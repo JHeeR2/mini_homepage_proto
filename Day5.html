@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>2021 MINI HOMEPAGE</title>
+    <link rel="stylesheet" href="./static/Day5_CSS.css" />
+    <script src="https://kit.fontawesome.com/92931ba3c9.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <button><i class="fas fa-lock"></i>비밀버튼</button>
+    <div class="bookcover">
+      <div class="bookdot">
+        <div class="page"></div>
+      </div>
+    </div>
+    <div id="text" class="hidden"></div>
+    <div class="guestbook">
+      <div class="guestbook-image background-1">
+        <img src="./static/amongus.jpg" alt="프로필 사진" />
+      </div>
+      <div class="guestbooktext">내용</div>
+    </div>
+    
+    <button id ="button" onclick="getTextFile()">텍스트 파일 불러오기</button>
+    <script>
+      function getTextFile() {
+        var input = document.createElement("input");
+        input.type = "file";
+        input.accept = "text/plain";
+        input.onchange = function (event) {
+          processFile(event.target.files[0]);
+        } 
+        input.click();
+      }
+
+      function processFile(file) {
+        var reader = new FileReader();
+        reader.readAsText(file, "utf-8");
+
+        reader.onload = function () {
+          document.getElementById("text").innerText = reader.result;
+        };
+      }
+    </script>
+  </body>
+</html>
